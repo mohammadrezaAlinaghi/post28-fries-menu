@@ -1,0 +1,120 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+*{
+    margin: 0; padding: 0;
+}
+$dark-black : #2E3047;
+$special-black : #3C3F58;
+$special-gray : #707793;
+$special-green : #3BBA9C;
+body{
+    background-color: $special-black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+}
+.fries-menu{
+    display: inline-flex;
+    position: relative;
+    width: 65px; height: 50px;
+    margin: 5px;
+    flex-direction:column;
+    flex-wrap: nowrap;
+    justify-content: left;
+    z-index: 4;
+    label{
+        position: absolute;
+        display: block;
+        width: 100%; height: 100%;
+        cursor: pointer;
+        z-index: 5;
+    }
+    span{
+        display: block;
+        width: calc(100% - 10px); height: calc(100% / 3 - 10px);
+        margin: 5px;
+        background-color:$special-green;
+        border-radius:100px;
+        transition: 600ms;
+        &:nth-child(2){
+            width: calc(100% - 30px);
+        }
+        &:nth-child(3){
+            width: calc(100% - 18px);
+        }
+    }
+}
+.box-menu{
+    position: absolute;
+    left: -100vw; top: 0;
+    width: 60vw; max-width: 300px;
+    height: 100vh;
+    padding-top: 60px;
+    background-color:$dark-black;
+    transition: 600ms;
+    box-sizing: border-box;
+    z-index: 3;
+    li{
+        transition: 200ms;
+        &:hover{
+            background-color:darken($dark-black, 6%);
+        }
+        a{
+            display:block;
+            padding: 10px;
+            font-size: 1.5em;
+            text-decoration: none;
+            i{
+                color: lighten($special-green, 6%);
+            }
+            h1{
+                display:inline;
+                color: lighten($special-green, 43%);
+                font-size: inherit;
+                font-weight: 100;
+            }
+        }
+    }
+}
+#full-menu-check{
+    display: none;
+    &:checked{
+        & ~ .fries-menu{
+            span{
+                animation-direction: normal;
+                animation-timing-function: ease-in;
+                animation-duration: 600ms;
+                &:nth-child(1){
+                    animation-name: click-menu-firts-span;
+                    width: calc(100% - 25px);
+                }
+                &:nth-child(2){
+                    animation-name: click-menu-second-span;
+                    width: calc(100% - 5px);
+                }
+                &:nth-child(3){
+                    animation-name: click-menu-third-span;
+                    width: calc(100% - 9px);
+                }
+              }
+        }
+        & ~ .box-menu{
+            left: 0;  
+        }
+    }
+}
+
+
+@keyframes click-menu-firts-span {
+0%   {width: calc(100% - 10px);}
+60%  {width: calc(100% - 45px);}
+100% {width: calc(100% - 25px);}
+}
+@keyframes click-menu-second-span {
+0%   {width: calc(100% - 30px);}
+50%  {width: calc(100% - 0px);}
+100% {width: calc(100% - 5px);}
+}
+@keyframes click-menu-third-span {
+0%   {width: calc(100% - 18px);}
+50%  {width: calc(100% - 36px);}
+100% {width: calc(100% - 9px);}
+}
